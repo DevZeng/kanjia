@@ -66,7 +66,7 @@
       <el-table-column label="操作" min-width="210" align="center">
        <template slot-scope="scope">
          
-        <el-button type="success" size="mini" @click="handleKanEdit(scope.$index, scope.row)" v-show="scope.row.enable==1&&checkper1">编辑</el-button>
+        <el-button type="success" size="mini" @click="handleKanEdit(scope.$index, scope.row)" v-show="scope.row.enable==0&&checkper1">编辑</el-button>
         <el-button type="danger" size="mini" @click="handleDelete(scope.$index, scope.row)" v-show="checkper2">删除</el-button>
 
         <el-button type="success" size="mini" @click="handleNotify(scope.$index, scope.row)">推送</el-button>

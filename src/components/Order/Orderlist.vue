@@ -378,7 +378,7 @@
 
         // console.log(hosturl+'v3'+'/export/orders'+'?page=1')
 
-        this.orderexcel=hosturl+'v3'+'/export/orders'+'?page='+ this.currentPage + '&limit=' + this.limit+ '&search=' + this.filter.search+'&start=' + this.filter.start+'&end=' + this.filter.end+'&state='+this.filter.state+'&type='+this.filter.type+'&city='+this.filter.city+'&address='+this.filter.address+'&shopid='+this.filter.shopid
+        this.orderexcel=hosturl+'v3'+'/export/orders'+'?page='+ this.currentPage + '&limit=1000000'+ '&search=' + this.filter.search+'&start=' + this.filter.start+'&end=' + this.filter.end+'&state='+this.filter.state+'&type='+this.filter.type+'&city='+this.filter.city+'&address='+this.filter.address+'&shopid='+this.filter.shopid
       });
     },
 
