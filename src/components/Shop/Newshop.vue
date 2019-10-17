@@ -580,6 +580,7 @@
   import { shopaddGet } from '../../api/api';
   import { shopPost } from '../../api/api';
   import { myshopGet } from '../../api/api';
+  import { getOneShop } from '../../api/api';
 
 
   export default {
@@ -615,6 +616,7 @@
         this.shopid=shopid
        // window.sessionStorage.removeItem('shopid')
        this.getinfo()
+       window.sessionStorage.removeItem('shopid')
      }
 
      setTimeout(() => {
@@ -627,6 +629,15 @@
       var allParams = '?id='+this.shopid;
       myshopGet(allParams).then((res) => {
         console.log(res.data)
+      });
+      getOneShop(allParams).then((res)=>{
+        console.log(res.data)
+        this.newshop.name = res.data.name;
+        this.newshop.manager = res.data.manager;
+        this.newshop.city_id = res.data.city_id;
+        this.cityone = res.data.cityone;
+        this.zuobiao = res.data.lat+','+res.data.lon;
+        this.getcitytwo();
       });
     },
 

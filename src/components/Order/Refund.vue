@@ -243,11 +243,14 @@
            this.getlist();
            this.dialogDelVisible = false;
          } else {
-           loading.close();
            this.$message({
             message: res.msg,
             type: 'error'
           });
+          loading.close();
+          this.getlist();
+          console.log('sadfdsa');
+           this.dialogDelVisible = false;
          }
        }).catah((res)=>{
         console.log(res);
