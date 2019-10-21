@@ -100,6 +100,8 @@ export const shopGet = params => { return axios.get(`${base}/stores`+`${params}`
 
 export const myshopGet = params => { return axios.get(`${base}/my/stores`+`${params}`).then(res => res.data)}
 
+export const delStore = params => { return axios.get(`${base}/del/store`+`${params}`).then(res => res.data)}
+
 export const getOneShop = params => { return axios.get(`${base}/store`+`${params}`).then(res => res.data)}
 
 

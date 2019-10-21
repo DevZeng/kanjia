@@ -287,8 +287,9 @@
         postarr:[],
         editId:'',
         delId:'',
-
-
+cityone:'',
+levelarr1:[],
+        levelarr2:[],
         typeArr1:[],
         type1:'',
         typeArr2:[],

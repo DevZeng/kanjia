@@ -616,7 +616,7 @@
         this.shopid=shopid
        // window.sessionStorage.removeItem('shopid')
        this.getinfo()
-       window.sessionStorage.removeItem('shopid')
+      //  window.sessionStorage.removeItem('shopid')
      }
 
      setTimeout(() => {
@@ -676,7 +676,7 @@
             lat:item[0],
             lon:item[1],
             city_id:this.newshop.city_id,
-            address:addr_cur.value
+            address:addr_cur.value,
           }
 
           let shopid = window.sessionStorage.getItem('shopid')
