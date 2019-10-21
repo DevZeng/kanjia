@@ -366,13 +366,17 @@
       },
 
       handleSuccess(res, file,fileList) {
-        var that=this
-        this.newgood.pictures=[]
-        fileList.forEach(function (item) {
-          that.newgood.pictures.push({
-            href:qiniu.showurl + item.response.key
-          })
-        })
+        console.log(fileList)
+    this.newgood.pictures=[]
+    for(var i=0;i<fileList.length;i++){
+      if(fileList[i].response){
+        if(fileList[i].response.key !== 1){
+          this.newgood.pictures.push(qiniu.showurl+ fileList[i].response.key)  
+        }else {
+          this.newgood.pictures.push(fileList[i].url)
+        }
+      }
+    }
 
       },
 
