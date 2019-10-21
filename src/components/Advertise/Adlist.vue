@@ -28,6 +28,8 @@
               <img :src="scope.row.pic" style="max-width:90px;max-height:90px;" />
             </template>
           </el-table-column>
+          <el-table-column prop="cityone" label="城市" min-width="200" align="center">
+      </el-table-column>
 
           <el-table-column label="操作" width="300" align="center">
            <template slot-scope="scope">
@@ -116,7 +118,14 @@
 <el-col>
   <el-dialog :title="diatitle" :visible.sync="dialogNewVisible" width="500" center style="min-width: 500px">
     <el-form ref="newadv" :model="newadv" label-width="120px">
-
+      <el-form-item label="商店地区：" prop="cityone">
+          <el-select v-model="cityone" placeholder="请选择市" filterable @change="getcitytwo">
+            <el-option v-for="item in levelarr1" :label="item.name" :value="item.id" :key="item.id"></el-option>
+          </el-select>
+          <el-select v-model="filter.city_id" placeholder="请选择区" filterable>
+            <el-option v-for="item in levelarr2" :label="item.name" :value="item.id" :key="item.id"></el-option>
+          </el-select>
+        </el-form-item>
       <el-form-item label="上传图片：">
         <el-upload class="upload-demo" list-type="picture-card" :action="upurl" :data="uptoken" :on-success="handleSuccess" :on-exceed="handleExceed" :file-list="postarr" :limit="1" :show-file-list="true" accept="image/*">
           <i class="el-icon-plus"></i>
@@ -257,6 +266,7 @@
   import {posterPost} from '../../api/api';
   import {iconPost} from '../../api/api';
   import {iconGet} from '../../api/api';
+  import {shopaddGet} from '../../api/api';
 
   import qiniu from '../../api/qiniu';
 
@@ -309,11 +319,17 @@ levelarr1:[],
 
 
         dialogNewpostVisible:false,
+        filter:{
+          city_id:'',
+          start:'',
+          end:''
+        },
         indexpostarr:[{
           id:1,
           name:'砍价海报',
           pic:'../../../static/images/default.png'
         },
+        
         // {
         //   id:2,          
         //   name:'集卡牌海报',
@@ -502,6 +518,21 @@ levelarr1:[],
            this.iconarr=iconarr
          }
        });
+      },
+      getadd(){
+        var allParams = '?page=1&limit=10000&base=1';
+        shopaddGet(allParams).then((res) => {
+          this.levelarr1=res.data.data;
+          this.cityone=res.data.data[0].id
+          this.getcitytwo()
+        });
+      },
+      getcitytwo(){
+        var allParams = '?parent_id='+this.cityone;
+        shopaddGet(allParams).then((res) => {
+          this.filter.city_id=res.data.data[0].id
+          this.levelarr2=res.data.data;
+        });
       },
 
       handleiconEdit(index, row){
@@ -731,6 +762,7 @@ levelarr1:[],
       this.dialogotherpostVisible = true;
       this.postId = row.id;
       this.otherarr=[];
+      // this.cityone
     },
 
     otherleSuccess(res, file){
@@ -828,6 +860,7 @@ levelarr1:[],
     // this.gettype1()
     this.getlist();
     // this.geticon();
+    this.getadd();
     this.getposter();
     this.checkPer();
   }
